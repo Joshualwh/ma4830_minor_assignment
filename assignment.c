@@ -1,71 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-
-/* User Input to choose which one to run and calculate */
-void user_input (char *shape_chosen) {
-
-   const char square[] = "square";
-   const char circle[] = "circle";
-   const char rectangle[] = "rectangle";
-   const char cube[] = "cube";
-   const char sphere[] = "sphere";
-   const char cone[] = "cone";
-   const char cuboid[] = "cuboid";
-
-   if (strncmp(shape_chosen, square, 7) == 0){
-      square();
-   }
-   else if (strncmp(shape_chosen, circle, 7) == 0){
-      circle();
-   }
-   else if (strncmp(shape_chosen, rectangle, 10) == 0){
-      rectangle();
-   }
-   else if (strncmp(shape_chosen, cube, 5) == 0){
-      cube();
-   }
-   else if (strncmp(shape_chosen, sphere, 7) == 0){
-      sphere();
-   }
-   else if (strncmp(shape_chosen, cone, 5) == 0){
-      cone();
-   }
-   else if (strncmp(shape_chosen, cuboid, 7) == 0){
-      cuboid():
-   }
-   else{
-      printf ("Error! No shape found!");
-   }
-
-   // const char shape_choices[7][10] = {"square ", "circle ", "rectangle ", "cube ", "sphere ", "cone ", "cuboid "};
-
-   // int n = 0;
-   // while (n < 8){
-   //    printf ("%s", shape_choices[n]);
-   //    n++;
-   // }
-
-   // int checking_status1, checking_status2;
-
-   // printf("%s\n", shape_chosen);
-   // printf("%s\n", cube);
-   // checking_status1 = strncmp(shape_chosen, cube, 5);
-   // checking_status2 = strncmp(shape_chosen, square, 7);
-
-   // printf("%d, %d\n", checking_status1, checking_status2);
-
-   // while (checking_status != 0){
-   //    checking_status = strncmp(shape_chosen, cube, 4);
-   // }
-   // if (strncmp(shape_chosen, cube, 4) == 0){
-   //    printf("%s", shape_chosen);
-   // }
-
-   //  printf("%d \n", area);
-   //  printf("%d \n", square_perimeter);
 #include <math.h>
 #include <stdbool.h>
-#include <string.h>
 
 struct Shape{
     char shape_input[20];
@@ -80,71 +16,63 @@ struct Shape{
     float radius;
     };
 
+/* 2D Square */
 void square(struct Shape *shape){
-    /* 2D Square */
-    printf("Please Enter any integer Value(m) : ");
+    printf("Enter length of square(m):");
     scanf("%f", &shape->length);
-    strcpy(shape->shape_input, "square");
-    shape->area = length**2;
-    shape->circumference = 4*a;
+    shape->area = shape->length * shape->length;
+    shape->circumference = 4 * shape->length;
     shape->two_dimension = true;
 }
 
-// void square(struct Shape *shape){
-//   /* 2D Square */
-    
-//   printf("Length = %lf m \n", *length);
+/* 2D Rectangle */
+void rectangle(struct Shape *shape){
+    printf("Enter length of rectange(m):");
+    scanf("%f", &shape->length);
+    printf("Enter width of rectange(m):");
+    scanf("%f", &shape->width);
+    shape->area = shape->length * shape->width;
+    shape->circumference = 2*(shape->length) + 2*(shape->width);
+    shape->two_dimension = true;
+}
 
-//   area = (*length)*(*length);
-//   perimeter = 4*(*length);
-
-//   printf("Area = %lf m \n", area);
-//   printf("Perimeter = %lf m \n", perimeter);
-//   printf("\n");
-
-// }
-
-// void rectangle(double* short_side, double* long_side){
-//   /* 2D Rectangle */
-//   double area, perimeter;
-
-//   printf("Short side = %lf m \n", *short_side);
-//   printf("Long side = %lf m \n", *long_side);
-
-//   area = (*short_side)*(*long_side);
-//   perimeter = 2*(*short_side) + 2*(*long_side);
-
-//   printf("Area = %lf m \n", area);
-//   printf("Perimeter = %lf m \n", perimeter);
-//   printf("\n");
-
-// }
-
-// void circle(double* radius){
-//   /* 2D Circle */
-//   double area, perimeter;
-
-//   printf("Radius = %lf m \n", *radius);
-
-//   area = M_PI * pow((*radius), 2);
-//   perimeter = 2 * M_PI * (*radius);
-
-//   printf("Area = %lf m \n", area);
-//   printf("Perimeter = %lf m \n", perimeter);
-//   printf("\n");
-
-// }
+/* 2D Circle */
+void circle(struct Shape *shape){
+    printf("Enter radius of circle(m):");
+    scanf("%f", &shape->radius);
+    shape->area = M_PI * pow(shape->radius, 2);
+    shape->circumference = 2 * M_PI * (shape->radius);
+    shape->two_dimension = true;
+}
 
 
 
 void output(struct Shape *shape){
+    printf("Types of 2D or 3D object: %s \n", shape->shape_input);
+    if (strncmp(shape->shape_input, "square", 7) == 0 || strncmp(shape->shape_input, "cube", 5) == 0){
+        printf("Length: %f m \n", shape->length);
+    }
+    else if(strncmp(shape->shape_input, "circle", 7) == 0 || strncmp(shape->shape_input, "sphere", 5) == 0){
+        printf("Radius: %f m \n", shape->radius);
+    }
+    else if(strncmp(shape->shape_input, "cone", 5) == 0){
+        printf("Radius: %f m \n", shape->radius);
+        printf("Height: %f m \n", shape->height);
+    }
+    else if(strncmp(shape->shape_input, "rectange", 10) == 0){
+        printf("Length: %f m \n", shape->length);
+        printf("Width: %f m \n", shape->width);
+    }
+    else if(strncmp(shape->shape_input, "cuboid", 7) == 0){
+        printf("Length: %f m \n", shape->length);
+        printf("Width: %f m \n", shape->width);
+        printf("Height: %f m \n", shape->height);
+    }
     if (shape->two_dimension){
-        printf("Types of 2D object: %s \n", shape->shape_input);
         printf("Area: %f m^2 \n", shape->area);
         printf("Circumference: %f m \n", shape->circumference);
     }
     else{
-        printf("Types of 3D object: %s \n", shape->shape_input);
         printf("Circumference: %f m \n", shape->circumference);
         printf("Surface area: %f m^2 \n", shape->surface_area);
         printf("Volume: %f m^3 \n", shape->volume);
@@ -153,15 +81,42 @@ void output(struct Shape *shape){
 
 
 int main () {
-
-   char shape_input[10];
-   printf("Enter choice for shape : ");
-   scanf("%s", shape_input);
-   // printf("%s\n", shape_input);
-   user_input(shape_input);
-   // if shape_input 
+    
     struct Shape shape;
-    printf("ahah \n");
-    square(&shape);
+    printf("Enter choice for shape : ");
+    scanf("%s", shape.shape_input);
+    const char square_[] = "square";
+    const char circle_[] = "circle";
+    const char rectangle_[] = "rectangle";
+    const char cube_[] = "cube";
+    const char sphere_[] = "sphere";
+    const char cone_[] = "cone";
+    const char cuboid_[] = "cuboid";
+
+   if (strncmp(shape.shape_input, square_, 7) == 0){
+      square(&shape);
+   }
+   else if (strncmp(shape.shape_input, circle_, 7) == 0){
+      circle(&shape);
+   }
+   else if (strncmp(shape.shape_input, rectangle_, 10) == 0){
+      rectangle(&shape);
+   }
+   else if (strncmp(shape.shape_input, cube_, 5) == 0){
+    //   cube();
+   }
+   else if (strncmp(shape.shape_input, sphere_, 7) == 0){
+    //   sphere();
+   }
+   else if (strncmp(shape.shape_input, cone_, 5) == 0){
+    //   cone();
+   }
+   else if (strncmp(shape.shape_input, cuboid_, 7) == 0){
+    //   cuboid();
+   }
+   else{
+      printf ("Error! No shape found!");
+   }
+    
     output(&shape);
 }
