@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-int main () {
-    /* Let's do one first: 2D Square */
+int square(a){
+    /* 2D Square */
     int a, area, square_perimeter;
 
     printf("Please Enter any integer Value : ");
@@ -12,4 +12,12 @@ int main () {
 
     printf("%d \n", area);
     printf("%d \n", square_perimeter);
-    }
+}
+
+int main () {
+
+    char b
+    printf("Please Enter Choice for shape : ");
+    scanf("%d", &b);
+    square()
+}
