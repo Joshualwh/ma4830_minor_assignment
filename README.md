@@ -18,7 +18,7 @@ MA4830 Minor Assignment Details
 ## Coding Process
 
 1. Create user input.
-  - Leads to different functions.
+    - Leads to different functions.
 2. Create the different functions needed.
-  - 2D: Rectangle/Square/Circle.
-    3D: Cube/Blocks/Circles/Cubes/Cones.
+    - 2D: Rectangle/Square/Circle.
+      3D: Cube/Blocks/Circles/Cubes/Cones.
