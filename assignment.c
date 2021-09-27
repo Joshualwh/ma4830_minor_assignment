@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+
+
 int square(a){
     /* 2D Square */
     int a, area, square_perimeter;
@@ -13,6 +15,8 @@ int square(a){
     printf("%d \n", area);
     printf("%d \n", square_perimeter);
 }
+
+
 
 int main () {
 
