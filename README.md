@@ -7,7 +7,7 @@ MA4830 Minor Assignment Details
   - Area.
   - Volume.
   - 2D: Rectangle/Square/Circle
-    3D: Cube/Blocks/Circles/Cubes/Cones
+  - 3D: Cube/Blocks/Circles/Cubes/Cones
 
 - Program request for appropriate parameters, depending on the type of object chosen.
   - Guide the user to input appropriate parameters.
@@ -21,4 +21,4 @@ MA4830 Minor Assignment Details
     - Leads to different functions.
 2. Create the different functions needed.
     - 2D: Rectangle/Square/Circle.
-      3D: Cube/Blocks/Circles/Cubes/Cones.
+    - 3D: Cube/Blocks/Circles/Cubes/Cones.
