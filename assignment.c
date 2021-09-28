@@ -88,7 +88,7 @@ void cuboid (struct Shape *shape){
     shape->circumference = 4.0 * (shape->length + shape->width + shape->height);
     shape->surface_area = 2.0 * ( (shape->length * shape->width) + (shape->length + shape->height) + (shape->width + shape->height) );
     shape->volume = shape->length * shape->width * shape->height;
-
+    shape->two_dimension = false;
 }
 
 void sphere (struct Shape *shape){
@@ -100,7 +100,7 @@ void sphere (struct Shape *shape){
     shape->circumference = 2.0 * M_PI * (shape->radius);
     shape->surface_area = 4.0 * M_PI * pow(shape->radius, 2);
     shape->volume =  (4.0/3.0) * M_PI * pow(shape->radius, 3);
-
+    shape->two_dimension = false;
 }
 
 void cone (struct Shape *shape){
@@ -117,28 +117,28 @@ void cone (struct Shape *shape){
     shape->circumference = 2 * M_PI * (shape->radius);
     shape->surface_area = M_PI * shape->radius * (shape->radius + sqrt(pow(shape->height, 2) + pow(shape->radius, 2)));
     shape->volume = M_PI * pow(shape->radius, 2) * shape->height / 3.0;
-
+    shape->two_dimension = false;
 }
 
 
 
 void output(struct Shape *shape){
     printf("Types of 2D or 3D object: %s \n", shape->shape_input);
-    if (strncmp(shape->shape_input, "square", 7) == 0 || strncmp(shape->shape_input, "cube", 5) == 0){
+    if (strcmp(shape->shape_input, "square") == 0 || strcmp(shape->shape_input, "cube") == 0){
         printf("Length: %f m \n", shape->length);
     }
-    else if(strncmp(shape->shape_input, "circle", 7) == 0 || strncmp(shape->shape_input, "sphere", 5) == 0){
+    else if(strcmp(shape->shape_input, "circle") == 0 || strcmp(shape->shape_input, "sphere") == 0){
         printf("Radius: %f m \n", shape->radius);
     }
-    else if(strncmp(shape->shape_input, "cone", 5) == 0){
+    else if(strcmp(shape->shape_input, "cone") == 0){
         printf("Radius: %f m \n", shape->radius);
         printf("Height: %f m \n", shape->height);
     }
-    else if(strncmp(shape->shape_input, "rectange", 10) == 0){
+    else if(strcmp(shape->shape_input, "rectange") == 0){
         printf("Length: %f m \n", shape->length);
         printf("Width: %f m \n", shape->width);
     }
-    else if(strncmp(shape->shape_input, "cuboid", 7) == 0){
+    else if(strcmp(shape->shape_input, "cuboid") == 0){
         printf("Length: %f m \n", shape->length);
         printf("Width: %f m \n", shape->width);
         printf("Height: %f m \n", shape->height);
@@ -155,46 +155,45 @@ void output(struct Shape *shape){
 }
 
 
-int main () {
+int main (int argc, char *argv[]) {
     
     struct Shape shape = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     printf("Enter choice for shape : ");
-    scanf("%s", shape.shape_input);
-
+    fgets(shape.shape_input, 20, stdin);
+   
     while(true){    
-        if (strncmp(shape.shape_input, "square", 7) == 0){
+        if (strcmp(shape.shape_input, "square") == 0){
             square(&shape);
             break;
         }
-        else if (strncmp(shape.shape_input, "circle", 7) == 0){
+        else if (strcmp(shape.shape_input, "circle") == 0){
             circle(&shape);
             break;
         }
-        else if (strncmp(shape.shape_input, "rectangle", 10) == 0){
+        else if (strcmp(shape.shape_input, "rectangle") == 0){
             rectangle(&shape);
             break;
         }
-        else if (strncmp(shape.shape_input, "cube", 5) == 0){
+        else if (strcmp(shape.shape_input, "cube") == 0){
             cube(&shape);
             break;
         }
-        else if (strncmp(shape.shape_input, "sphere", 7) == 0){
+        else if (strcmp(shape.shape_input, "sphere") == 0){
             sphere(&shape);
             break;
         }
-        else if (strncmp(shape.shape_input, "cone", 5) == 0){
+        else if (strcmp(shape.shape_input, "cone") == 0){
             cone(&shape);
             break;
         }
-        else if (strncmp(shape.shape_input, "cuboid", 7) == 0){
+        else if (strcmp(shape.shape_input, "cuboid") == 0){
             cuboid(&shape);
             break;
         }
         else{
-            printf ("Error! No shape found! Please input again. \n");
+            printf ("Error: Invalid shape input! Please input again. \n");
             printf("Enter choice for shape: ");
-            scanf("%s", shape.shape_input);
-
+            fgets(shape.shape_input, 20, stdin);
         }
     }
         
