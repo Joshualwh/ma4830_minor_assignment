@@ -1,6 +1,11 @@
 # MAA4830_minor_assignment
 MA4830 Minor Assignment Details
 
+
+## Program Flowchart
+<img src ="MA4830_minor_assignment.drawio.png">
+
+
 ## Assignment
 - Calculate properties of standard 2D or 3D objects.
   - Length of circumference.
