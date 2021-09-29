@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <stdbool.h>
@@ -10,6 +11,8 @@ struct Shape{
     float surface_area;
     float volume;
     float length;
+    float length2;
+    float length3;
     float height;
     float width;
     float radius;
@@ -23,7 +26,11 @@ void square(struct Shape *shape){
     while (shape->length <= 0){
         printf("Enter length of square(m):");
         scanf("%f", &shape->length);
-        if (shape->length <= 0) printf("Error: Only positive input! Please input again. \n");
+
+        if (shape->length <= 0) {printf("Error: Only positive number input! Please input again. \n"); 
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};     //Clear input buffer
+        }
     }
 
     //Calculate area and circumference
@@ -39,17 +46,72 @@ void rectangle(struct Shape *shape){
     while (shape->length <= 0){
         printf("Enter length of rectange(m):");
         scanf("%f", &shape->length);
-        if (shape->length <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->length <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        } 
     }
     while (shape->width <=0){
         printf("Enter width of rectange(m):");
         scanf("%f", &shape->width);
-        if (shape->width <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->width <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
 
     //Calculate area and circumference
     shape->area = shape->length * shape->width;
     shape->circumference = 2.0 *shape->length + 2.0 * shape->width;
+    shape->two_dimension = true;
+}
+
+/* 2D Triangle */
+void triangle(struct Shape *shape){
+
+    while(true){
+        // Ask for input parameters
+        while (shape->length <= 0){
+            printf("Enter length 1 of triangle(m):");
+            scanf("%f", &shape->length);
+            if (shape->length <= 0) {
+                printf("Error: Only positive number input! Please input again. \n");
+                char c;
+                while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+            }
+        }
+        while (shape->length2 <= 0){
+            printf("Enter length 2 of triangle(m):");
+            scanf("%f", &shape->length2);
+            if (shape->length2 <= 0) {
+                printf("Error: Only positive number input! Please input again. \n");
+                char c;
+                while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+            }
+        }
+        while (shape->length3 <= 0){
+            printf("Enter length 3 of triangle(m):");
+            scanf("%f", &shape->length3);
+            if (shape->length3 <= 0) {
+                printf("Error: Only positive number input! Please input again. \n");
+                char c;
+                while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+            }
+        }
+        if (!(shape->length + shape->length2 > shape->length3 && shape->length2 + shape->length3 > shape->length && shape->length3 + shape->length > shape->length2)){
+            printf("Invalid triangle length! The sum of the length of any two sides of a triangle must be greater than the length of the third side.\n");
+            shape->length = 0; shape->length2 = 0; shape->length3 = 0;
+        }
+        else {break;}
+    }
+
+
+    //Calculate area and circumference
+    float s = (shape->length + shape->length2 + shape->length3) / 2.0;
+    shape->area = sqrt(s * (s - shape->length) * (s - shape->length2) * (s - shape->length3));
+    shape->circumference = shape->length + shape->length2 + shape->length3;
     shape->two_dimension = true;
 }
 
@@ -60,7 +122,11 @@ void circle(struct Shape *shape){
     while (shape->radius <= 0){
         printf("Enter radius of circle(m):");
         scanf("%f", &shape->radius);
-        if (shape->radius <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->radius <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
 
     //Calculate area and circumference
@@ -76,7 +142,11 @@ void cube (struct Shape *shape){
     while (shape->length <= 0){
         printf("Enter length of cube(m):");
         scanf("%f", &shape->length);
-        if (shape->length <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->length <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
 
     //Calculate circumference, surface area and volume
@@ -93,17 +163,29 @@ void cuboid (struct Shape *shape){
     while (shape->length <= 0){
         printf("Enter length of cuboid(m):");
         scanf("%f", &shape->length);
-        if (shape->length <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->length <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
     while (shape->width <= 0){
         printf("Enter width of cuboid(m):");
         scanf("%f", &shape->width);
-        if (shape->width <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->width <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
     while (shape->height <= 0){
         printf("Enter height of cuboid(m):");
         scanf("%f", &shape->height);
-        if (shape->height <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->height <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
 
     //Calculate circumference, surface area and volume
@@ -120,7 +202,11 @@ void sphere (struct Shape *shape){
     while (shape->radius <= 0){
         printf("Enter radius of sphere(m):");
         scanf("%f", &shape->radius);
-        if (shape->radius <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->radius <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
 
     //Calculate circumference, surface area and volume
@@ -137,12 +223,20 @@ void cone (struct Shape *shape){
     while (shape->radius <= 0){
         printf("Enter radius of cone(m):");
         scanf("%f", &shape->radius);
-        if (shape->radius <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->radius <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
     while (shape->height <= 0){
         printf("Enter height of cone(m):");
         scanf("%f", &shape->height);
-        if (shape->height <= 0) printf("Error: Only positive input! Please input again. \n");
+        if (shape->height <= 0) {
+            printf("Error: Only positive number input! Please input again. \n");
+            char c;
+            while((c = getchar()) != '\n' &&  c != EOF){};      //Clear input buffer
+        }
     }
 
     //Calculate circumference, surface area and volume
@@ -164,6 +258,11 @@ void output(struct Shape *shape){
     }
     else if(strcmp(shape->shape_input, "circle") == 0 || strcmp(shape->shape_input, "sphere") == 0){
         printf("Radius: %f m \n", shape->radius);
+    }
+    else if (strcmp(shape->shape_input, "triangle") == 0){
+        printf("Length 1: %f m \n", shape->length);
+        printf("Length 2: %f m \n", shape->length2);
+        printf("Length 3: %f m \n", shape->length3);
     }
     else if(strcmp(shape->shape_input, "cone") == 0){
         printf("Radius: %f m \n", shape->radius);
@@ -189,51 +288,68 @@ void output(struct Shape *shape){
         printf("Surface area: %f m^2 \n", shape->surface_area);
         printf("Volume: %f m^3 \n", shape->volume);
     }
+    char c;
+    while((c = getchar()) != '\n' &&  c != EOF){};   
 }
 
 
 int main (int argc, char *argv[]) {
     
-    // Intiatlise shape struct members as 0
-    struct Shape shape = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
-    // Verify shape inputs and prompt corresponding functions
+    if (argc != 1){
+        printf("Please enter one argument only \n");
+        exit(0);
+    }
+    
     do{
-        printf("Enter choice for shape (square, circle, rectangle, cube, sphere, cone & cuboid) : ");
+        // Intiatlise shape struct members as 0
+        struct Shape shape = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        
+        printf("Enter -1 to exit the program. \n");
+        printf("Enter choice for shape (square, triangle, circle, rectangle, cube, sphere, cone & cuboid) : ");
         fgets(shape.shape_input, sizeof shape.shape_input, stdin);
-        sscanf(shape.shape_input, "%s", shape.shape_input);   
+        sscanf(shape.shape_input, "%s", shape.shape_input);
+
+        // Verify shape inputs and prompt corresponding functions
         if (strcmp(shape.shape_input, "square") == 0){
             square(&shape);
-            break;
+            output(&shape); 
+        }
+        else if (strcmp(shape.shape_input, "triangle") == 0){
+            triangle(&shape);
+            output(&shape); 
         }
         else if (strcmp(shape.shape_input, "circle") == 0){
             circle(&shape);
-            break;
+            output(&shape); 
         }
         else if (strcmp(shape.shape_input, "rectangle") == 0){
             rectangle(&shape);
-            break;
+            output(&shape);
         }
         else if (strcmp(shape.shape_input, "cube") == 0){
             cube(&shape);
-            break;
+            output(&shape); 
         }
         else if (strcmp(shape.shape_input, "sphere") == 0){
             sphere(&shape);
-            break;
+            output(&shape); 
         }
         else if (strcmp(shape.shape_input, "cone") == 0){
             cone(&shape);
-            break;
+            output(&shape); 
         }
         else if (strcmp(shape.shape_input, "cuboid") == 0){
             cuboid(&shape);
-            break;
+            output(&shape); 
         }
+        // Exit program when input is "-1"
+        else if (strcmp(shape.shape_input, "-1") == 0){
+            printf("Exiting program... \n");
+            exit(0);
+        }    
         else{
             printf ("Error: Invalid shape input! Please input again. \n");
         }
-    } while(true);
         
-    output(&shape);
+    } while(true);   
 }
