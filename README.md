@@ -3,7 +3,7 @@ MA4830 Minor Assignment Details
 
 
 ## Program Flowchart
-<img src ="MA4830_minor_assignment.drawio.png">
+<img src ="MA4830_minor_assignment_flowchart.png">
 
 
 ## Assignment
